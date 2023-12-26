@@ -133,7 +133,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<Object> findAllByPaginated(Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        List<User> userList = userPaginatedRepository.findAll(pageable).toList();
+        List<User> userList = userPaginatedRepository.findAll(pageable).getContent();
         if (userList.isEmpty())
             return ResponseEntity.status((HttpStatus.BAD_REQUEST))
                     .body(JsonResponse.builder()
